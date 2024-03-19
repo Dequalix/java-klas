@@ -21,6 +21,7 @@ public class H7Bank {
                 BankManager.addBank("DSB"))
             .forEach(x -> {
                 x.createBankAccounts(10);
+                System.out.println("Bank: " + x.getBankName());
             });
     }
 }
