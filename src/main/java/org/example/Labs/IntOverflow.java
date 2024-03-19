@@ -1,8 +1,9 @@
 package org.example.Labs;
 
 public class IntOverflow {
+    static int a = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
-        int a = Integer.MAX_VALUE;
         long l = 0;
         if (a == Integer.MAX_VALUE) {
             l = (long) a + 1;

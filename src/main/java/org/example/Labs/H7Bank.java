@@ -23,9 +23,4 @@ public class H7Bank {
                 x.createBankAccounts(10);
             });
     }
-
-    public void createBank(String name) {
-        Bank b = new Bank(name);
-        //banks.put(b.getBankId(), b);
-    }
 }
