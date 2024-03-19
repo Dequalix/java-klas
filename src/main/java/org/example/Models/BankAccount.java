@@ -6,12 +6,15 @@ import java.math.BigDecimal;
 
 public class BankAccount {
     private static int nextAccountId;
+    private final Bank bank;
 
     @Getter
     private final int accountId;
+    @Getter
     private BigDecimal balance;
 
-    public BankAccount() {
+    public BankAccount(Bank b) {
+        this.bank = b;
         accountId = nextAccountId;
         nextAccountId++;
     }
@@ -20,16 +23,15 @@ public class BankAccount {
         balance = balance.add(d);
     }
 
-    public void removeBalance(BigDecimal d) {
+    public boolean removeBalance(BigDecimal d) {
         if (hasBalance(d)) {
             balance = balance.subtract(d);
+            return true;
         }
+        return false;
     }
 
     public boolean hasBalance(BigDecimal d) {
-        if (balance.compareTo(d) < 0) {
-            return false;
-        }
-        return true;
+        return balance.compareTo(d) >= 0;
     }
 }
