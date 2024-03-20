@@ -19,8 +19,9 @@ public class BankAccount {
         nextAccountId++;
     }
 
-    public void addBalance(BigDecimal d) {
+    public boolean addBalance(BigDecimal d) {
         balance = balance.add(d);
+        return true;
     }
 
     public boolean removeBalance(BigDecimal d) {
@@ -31,7 +32,7 @@ public class BankAccount {
         return false;
     }
 
-    public boolean hasBalance(BigDecimal d) {
+    private boolean hasBalance(BigDecimal d) {
         return balance.compareTo(d) >= 0;
     }
 }

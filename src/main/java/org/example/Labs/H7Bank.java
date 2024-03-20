@@ -17,13 +17,14 @@ public class H7Bank {
     }
 
     public static void setup() {
-        List.of(BankManager.addBank("ABN"),
-                BankManager.addBank("Rabobank"),
-                BankManager.addBank("SNS"),
-                BankManager.addBank("DSB"))
-            .forEach(x -> {
-                x.createBankAccounts(10);
-                System.out.println("Bank: " + x.getBankName());
-            });
+        BankManager bankManager = BankManager.instance;
+        List.of(bankManager.addBank("ABN"),
+                        bankManager.addBank("Rabobank"),
+                        bankManager.addBank("SNS"),
+                        bankManager.addBank("DSB"))
+                .forEach(x -> {
+                    x.createBankAccounts(10);
+                    System.out.println("Bank: " + x.getBankName());
+                });
     }
 }

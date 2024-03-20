@@ -1,9 +1,10 @@
 package org.example.Models;
 
 import lombok.Getter;
+import lombok.Setter;
+import org.example.Manager.BankAccountManager;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 
 public class Bank {
     private static int nextIdentifier = 1;
@@ -12,33 +13,40 @@ public class Bank {
     private int interestRate;
     @Getter
     private final String bankName;
-    private final HashMap<Integer, BankAccount> accounts = new HashMap<>();
+    @Setter
+    private BankAccountManager accountManager;
+
 
     public Bank(String bankName) {
+        accountManager = new BankAccountManager();
         bankId = nextIdentifier;
         nextIdentifier++;
         this.bankName = bankName;
     }
 
     public BankAccount getBankAccount(int id) {
-        return accounts.get(id);
+        return accountManager.getBankAccount(id);
     }
 
-    public void createBankAccounts(int ammount) {
-        for(int i = 0; i <= ammount; i++) {
+    public void createBankAccounts(int amount) {
+        for (int i = 0; i <= amount; i++) {
             createBankAccount();
         }
     }
 
-    public BigDecimal sumTotalBalance () {
-        BigDecimal total = BigDecimal.ZERO;
-        accounts.values().forEach(x -> total.add(x.getBalance()));
-        return total;
+    public static boolean sendMoneyFromTo(BankAccount a, BankAccount b, BigDecimal ammount) {
+        if (a.removeBalance(ammount)) {
+            b.addBalance(ammount);
+            return true;
+        }
+        return false;
+    }
+
+    public BigDecimal sumTotalBalance() {
+        return accountManager.sumTotalBalance();
     }
 
     public void createBankAccount() {
-        BankAccount ba = new BankAccount(this);
-        System.out.println("Account: " + ba.getAccountId());
-        accounts.put(ba.getAccountId(), ba);
+        accountManager.createBackAccount(this);
     }
 }
