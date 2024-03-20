@@ -8,27 +8,20 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 class BankTest {
-//    private Bank sut;
-    private Bank sut;
     private BankAccountManager mockAccountManager;
 
     @BeforeEach
     void setup() {
-        sut = new Bank("ABN");
         mockAccountManager = mock(BankAccountManager.class);
-
-
     }
 
 
     @Test
     void getBankAccount() {
         // Given
-        when(mockAccountManager.createBackAccount(sut)).then(mockAccountManager.getBankAccount(1));
         // When
-        when(mockAccountManager.getBankAccount(1)).getMock();
+        when(mockAccountManager.getBankAccount(anyInt())).thenReturn(mock(BankAccount.class));
         // Then
-        verify(mockAccountManager.getBankAccount(1));
-
+        verify(mockAccountManager.getBankAccount(anyInt()));
     }
 }
