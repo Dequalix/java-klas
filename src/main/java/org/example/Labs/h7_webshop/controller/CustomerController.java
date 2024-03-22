@@ -4,13 +4,13 @@ import org.example.Labs.h7_webshop.model.Customer;
 import org.example.Labs.h7_webshop.repository.CustomerRepo;
 
 public class CustomerController {
-    CustomerRepo customerRepo;
-    public void createCustomer(String name, String residence, String zipCode, String email) {
-        customerRepo.createCustomer(name, residence, zipCode, email);
+    CustomerRepo customerRepo = new CustomerRepo();
+    public void createCustomer(String name, String residence, String address, String zipCode, String email) {
+        customerRepo.createCustomer(name, residence, address, zipCode, email);
     }
 
     public Customer findCustomer(String name) {
-        return customerRepo.findBy(name).stream().findFirst().get();
+        return customerRepo.findBy(name).stream().findFirst().orElse(null);
     }
 
     public void changeName(String oldName, String newName) {

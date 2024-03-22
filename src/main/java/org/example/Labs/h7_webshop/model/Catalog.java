@@ -8,10 +8,14 @@ import java.util.List;
 
 @Data
 public class Catalog {
+    private int id;
+    private static int nextId;
     private final LocalDate year;
     private List<Product> items;
 
     public Catalog() {
+        this.id=nextId;
+        nextId++;
         this.year = LocalDate.now();
     }
 
@@ -23,6 +27,5 @@ public class Catalog {
         this.year = LocalDate.of(year, month, day);
         this.items = new ArrayList<>();
     }
-
 
 }

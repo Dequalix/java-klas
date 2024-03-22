@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 
 public class Database {
     public static final List<Customer> customers = Arrays.asList(
-            new Customer("Karel", "Apeldoorn", "7352KS", "karel@karel.nl"),
-            new Customer("Peter", "Apeldoorn", "7332LA", "peter@peter.nl"),
-            new Customer("Rick", "Apeldoorn", "7315OP", "Rick@rick.nl"),
-            new Customer("Lisa", "Apeldoorn", "7312MS", "lisa@lisa.nl"),
-            new Customer("Mike", "Apeldoorn", "7392UY", "mike@mike.nl"),
-            new Customer("Maarten", "Apeldoorn", "7333LL", "maarten@maarten.nl"),
-            new Customer("Romy", "Apeldoorn", "7315KJ", "romy@romy.nl")
+            new Customer("Karel", "Apeldoorn","Karelstraat 10", "7352KS", "karel@karel.nl"),
+            new Customer("Peter", "Apeldoorn","Peterstraat 15", "7332LA", "peter@peter.nl"),
+            new Customer("Rick", "Apeldoorn", "Mortystraat 39", "7315OP", "Rick@rick.nl"),
+            new Customer("Lisa", "Apeldoorn", "Lisastraat 225", "7312MS", "lisa@lisa.nl"),
+            new Customer("Mike", "Apeldoorn", "Mikestraat 0", "7392UY", "mike@mike.nl"),
+            new Customer("Maarten", "Apeldoorn", "Maartenseweg 10", "7333LL", "maarten@maarten.nl"),
+            new Customer("Romy", "Apeldoorn", "Romyseweg 1", "7315KJ", "romy@romy.nl")
     );
 
     private static final List<Product> productList1 = Arrays.asList(

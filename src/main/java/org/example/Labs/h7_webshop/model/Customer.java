@@ -8,17 +8,23 @@ import java.util.List;
 
 @Data
 public class Customer {
+    private int id;
+    private static int nextId;
     private String name;
     private Address address;
     private Email email;
     private List<Order> orders;
     public Customer(String name) {
         this.name = name;
+        this.id=nextId;
+        nextId++;
     }
-    public Customer(String name, String residence,String zipCode, String email) {
+    public Customer(String name, String residence,String address, String zipCode, String email) {
         this.name = name;
-        this.address = new Address(residence, zipCode);
+        this.address = new Address(residence,address, zipCode);
         this.email = new Email(email);
+        this.id=nextId;
+        nextId++;
     }
 
     public void addOrderToList(Order o) {

@@ -12,8 +12,8 @@ public class CustomerRepo {
         return c;
     }
 
-    public Customer createCustomer(String name, String residence, String zipCode, String email ) {
-        Customer c = new Customer(name, residence, zipCode, email);
+    public Customer createCustomer(String name, String residence, String address, String zipCode, String email ) {
+        Customer c = new Customer(name, residence, address, zipCode, email);
         Database.customers.add(c);
         return c;
     }

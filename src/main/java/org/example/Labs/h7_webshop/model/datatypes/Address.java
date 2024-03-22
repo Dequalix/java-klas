@@ -4,11 +4,13 @@ import lombok.Data;
 
 @Data
 public class Address {
-    private String residence;
+    private String placeOfResidence;
+    private String address;
     private ZipCode zipCode;
 
-    public Address(String recidence, String zipCode) {
-        this.residence = recidence;
+    public Address(String recidence,String address, String zipCode) {
+        this.placeOfResidence = recidence;
+        this.address = address;
         try {
             this.zipCode = new ZipCode(zipCode);
         } catch (IllegalArgumentException e) {

@@ -15,10 +15,14 @@ public class ProductRepo {
         return Database.products;
     }
 
-    public List<Product> findBy(String name) {
+    public List<Product> findByName(String name) {
         return Database.products.stream()
                 .filter(x -> x.getName().contains(name))
                 .toList();
+    }
+
+    public List<Product> findById(int id) {
+        return Database.products.stream().filter(x -> x.getId() == id).toList();
     }
 
     public void removeProduct(Product p) {

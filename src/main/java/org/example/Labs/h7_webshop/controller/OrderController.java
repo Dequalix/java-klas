@@ -10,17 +10,23 @@ import org.example.Labs.h7_webshop.repository.ProductRepo;
 import java.util.List;
 
 public class OrderController {
-    OrderRepo orderRepo;
-    CustomerRepo customerRepo;
-    ProductRepo productRepo;
+    OrderRepo orderRepo = new OrderRepo();
+    CustomerRepo customerRepo = new CustomerRepo();
+    ProductRepo productRepo = new ProductRepo();
 
     public Order createOrder(List<Product> items, String c) {
-        Customer customer = customerRepo.findBy(c).stream().findFirst().get();
+        Customer customer = customerRepo.findBy(c).stream().findFirst().orElse(null);
+        if(customer == null) {
+            return null;
+        }
         return orderRepo.createOrder(items, customer);
     }
 
-    public void addItemToOrder(Order o, String p) {
-        Product product = productRepo.findBy(p).stream().findFirst().get();
+    public void addItemToOrder(Order o, int id) {
+        Product product = productRepo.findById(id).stream().findFirst().orElse(null);
+        if(product == null) {
+            return;
+        }
         orderRepo.addItemToOrder(o, product);
     }
 }

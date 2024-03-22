@@ -13,12 +13,17 @@ public class Order {
     @Getter
     @Setter
     private LocalDate orderDate;
+    @Getter
+    private int id;
+    private static int nextId;
     private List<Product> items;
     @Getter
     @Setter
     private BigDecimal totalPrice;
     public Order() {
         orderDate = LocalDate.now();
+        this.id=nextId;
+        nextId++;
         items = new ArrayList<>();
         totalPrice = new BigDecimal("0.00");
     }
