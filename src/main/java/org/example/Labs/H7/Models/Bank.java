@@ -1,8 +1,8 @@
-package org.example.Models;
+package org.example.Labs.H7.Models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.Manager.BankAccountManager;
+import org.example.Labs.H7.Manager.BankAccountManager;
 
 import java.math.BigDecimal;
 
@@ -34,9 +34,9 @@ public class Bank {
         }
     }
 
-    public static boolean sendMoneyFromTo(BankAccount a, BankAccount b, BigDecimal ammount) {
-        if (a.removeBalance(ammount)) {
-            b.addBalance(ammount);
+    public static boolean sendMoneyFromTo(BankAccount a, BankAccount b, BigDecimal amount) {
+        if (a.removeBalance(amount)) {
+            b.addBalance(amount);
             return true;
         }
         return false;
@@ -47,6 +47,6 @@ public class Bank {
     }
 
     public void createBankAccount() {
-        accountManager.createBackAccount(this);
+        accountManager.createBankAccount(this);
     }
 }

@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.Labs.H7.Models;
 
 import lombok.Getter;
 
@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 public class BankAccount {
     private static int nextAccountId;
     private final Bank bank;
+    private final BigDecimal DEFAUlT_VALUE = BigDecimal.valueOf(0.00);
 
     @Getter
     private final int accountId;
@@ -16,6 +17,7 @@ public class BankAccount {
     public BankAccount(Bank b) {
         this.bank = b;
         accountId = nextAccountId;
+        balance = DEFAUlT_VALUE;
         nextAccountId++;
     }
 

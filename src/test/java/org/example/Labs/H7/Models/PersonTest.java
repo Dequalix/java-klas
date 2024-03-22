@@ -1,8 +1,8 @@
-package org.example.Labs.Models;
+package org.example.Labs.H7.Models;
 
-import org.example.Exceptions.PersonDiedException;
-import org.example.Models.Gender;
-import org.example.Models.Person;
+import org.example.Labs.H1_H6.Exceptions.PersonDiedException;
+import org.example.Labs.H7.Models.Gender;
+import org.example.Labs.H7.Models.Person;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package org.example.Labs;
+package org.example.Labs.H1_H6;
 
 public class IntOverflow {
     static int a = Integer.MAX_VALUE;

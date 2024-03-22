@@ -1,7 +1,7 @@
-package org.example.Manager;
+package org.example.Labs.H7.Manager;
 
-import org.example.Models.Bank;
-import org.example.Models.BankAccount;
+import org.example.Labs.H7.Models.Bank;
+import org.example.Labs.H7.Models.BankAccount;
 
 import java.util.HashMap;
 import java.util.Map;

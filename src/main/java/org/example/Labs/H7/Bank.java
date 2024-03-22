@@ -1,12 +1,12 @@
-package org.example.Labs;
+package org.example.Labs.H7;
 
-import org.example.Manager.BankManager;
+import org.example.Labs.H7.Manager.BankManager;
 
 import java.util.List;
 import java.util.Scanner;
 
 
-public class H7Bank {
+public class Bank {
     static Scanner scanner = new Scanner(System.in);
     static String input;
 

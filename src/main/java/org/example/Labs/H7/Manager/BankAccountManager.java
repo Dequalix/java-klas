@@ -1,7 +1,7 @@
-package org.example.Manager;
+package org.example.Labs.H7.Manager;
 
-import org.example.Models.Bank;
-import org.example.Models.BankAccount;
+import org.example.Labs.H7.Models.Bank;
+import org.example.Labs.H7.Models.BankAccount;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class BankAccountManager {
         return accounts.get(id);
     }
 
-    public BankAccount createBackAccount(Bank bank) {
+    public BankAccount createBankAccount(Bank bank) {
         BankAccount ba = new BankAccount(bank);
         System.out.println("Account: " + ba.getAccountId());
         accounts.put(ba.getAccountId(), ba);

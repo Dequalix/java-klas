@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.Labs.H7.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
