@@ -2,6 +2,7 @@ package org.example.Labs.h7_webshop.repository;
 
 import org.example.Labs.h7_webshop.Database;
 import org.example.Labs.h7_webshop.model.Catalog;
+import org.example.Labs.h7_webshop.model.Product;
 
 import java.util.List;
 
@@ -17,4 +18,7 @@ public class CatalogRepo {
     }
 
 
+    public List<Product> finCatalogByYear(int year) {
+        return Database.catalogs.stream().filter(x -> x.getYear().getYear() == year).map();
+    }
 }

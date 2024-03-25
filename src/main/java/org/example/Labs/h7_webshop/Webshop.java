@@ -1,44 +1,58 @@
 package org.example.Labs.h7_webshop;
 
-import org.example.Labs.h7_webshop.controller.CustomerController;
-import org.example.Labs.h7_webshop.model.Customer;
+import org.example.Labs.h7_webshop.controller.*;
+import org.example.Labs.h7_webshop.model.*;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Webshop {
     static Scanner in = new Scanner(System.in);
     static String input;
-    static Boolean isLoggedIn = false;
+    static Customer loggedInAs = null;
     private static final String CLEAR_SCREEN = "\u001b[2J";
     static CustomerController customerController = new CustomerController();
+    static CatalogController catalogController = new CatalogController();
+    static OrderController orderController = new OrderController();
+    static ProductController productController = new ProductController();
 
     public static void main(String[] args) {
-        boolean peter = true;
-        while (peter) {
-            peter = mainMenu();
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            boolean peter = true;
+            while (peter) {
+                peter = mainMenu();
+            }
         }
+        catch (IOException | InterruptedException e) {
+            System.out.println(e);
+        }
+
 
     }
 
     public static boolean mainMenu() {
-        if (!isLoggedIn) {
+        if (loggedInAs == null) {
             System.out.println(CLEAR_SCREEN);
             System.out.println("**********************");
             System.out.println("**Webshop Main Menu***");
             System.out.println("**********************");
-            System.out.println("1) Log in");
-            System.out.println("2) Aanmaken gebruiker");
-            System.out.println("3) Catalog Bekijken");
+            System.out.println("1) Catalog");
+//            System.out.println("2) Create Account");
+            System.out.println("2) Log In");
             input = in.nextLine();
             switch (input) {
                 case "1": {
-                    logIn();
+                    catalog();
                     return true;
                 }
                 case "2": {
+                    createUser();
                     return true;
                 }
                 case "3": {
+                    logIn();
                     return true;
                 }
                 case "exit": {
@@ -52,15 +66,16 @@ public class Webshop {
             System.out.println("**********************");
             System.out.println("**Webshop Main Menu***");
             System.out.println("**********************");
-            System.out.println("1) Check out Catalog");
+            System.out.println("1) Catalog");
             System.out.println("2) Log out ");
             input = in.nextLine();
             switch (input) {
                 case "1": {
+                    catalog();
                     return true;
                 }
                 case "2": {
-                    isLoggedIn = false;
+                    loggedInAs = null;
                     return true;
                 }
                 case "exit": {
@@ -80,9 +95,7 @@ public class Webshop {
         System.out.println("0) Go back");
         System.out.println("Enter your name");
         String name = in.nextLine();
-        if (name.equals("0")) {
-            return;
-        }
+        if (name.equals("0")) return;
         Customer c = customerController.findCustomer(name);
         if (c == null) {
             System.out.println(CLEAR_SCREEN);
@@ -94,7 +107,67 @@ public class Webshop {
             in.nextLine();
             return;
         }
-        isLoggedIn = true;
+        loggedInAs = c;
+    }
+
+    public static void createUser() {
+        System.out.println(CLEAR_SCREEN);
+        System.out.println("**********************");
+        System.out.println("**    Create User   **");
+        System.out.println("**********************");
+        System.out.println("0) Go back");
+        System.out.println("Enter your name");
+        String name = in.nextLine();
+        if (name.equals("0")) return;
+        System.out.println(CLEAR_SCREEN);
+        System.out.println("**********************");
+        System.out.println("**    Create User   **");
+        System.out.println("**********************");
+        System.out.println("0) Go back");
+        System.out.println("Enter your place of residence");
+        String residence = in.nextLine();
+        if (residence.equals("0")) return;
+        System.out.println(CLEAR_SCREEN);
+        System.out.println("**********************");
+        System.out.println("**    Create User   **");
+        System.out.println("**********************");
+        System.out.println("0) Go back");
+        System.out.println("Enter your zipcode(NL)");
+        String zipCode = in.nextLine();
+        if (zipCode.equals("0")) return;
+        System.out.println(CLEAR_SCREEN);
+        System.out.println("**********************");
+        System.out.println("**    Create User   **");
+        System.out.println("**********************");
+        System.out.println("0) Go back");
+        System.out.println("Enter your street and number");
+        String address = in.nextLine();
+        if (address.equals("0")) return;
+        System.out.println(CLEAR_SCREEN);
+        System.out.println("**********************");
+        System.out.println("**    Create User   **");
+        System.out.println("**********************");
+        System.out.println("0) Go back");
+        System.out.println("Enter your email");
+        String email = in.nextLine();
+        if (email.equals("0")) return;
+        System.out.println(CLEAR_SCREEN);
+        customerController.createCustomer(name, residence, address, zipCode,email);
+    }
+
+    public static void catalog() {
+        System.out.println("**********************");
+        System.out.println("**      Catalog     **");
+        System.out.println("**********************");
+        System.out.println("0) Go back");
+        System.out.println("Enter the year of the Catalog you want to view");
+        List<Catalog> catalogs = catalogController.findAllCatalogs();
+        catalogs.stream().forEach(Catalog -> {
+            System.out.println(Catalog.getYear().getYear());
+        });
+        String year = in.nextLine();
+
+        System.out.println(CLEAR_SCREEN);
     }
 
 

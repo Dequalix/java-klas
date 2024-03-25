@@ -31,4 +31,7 @@ public class CatalogController {
     public List<Catalog> findAllCatalogs() {
         return catalogRepo.findAllCatalogs();
     }
+    public List<Product> findCatalogFromYear(int year) {
+        return catalogRepo.finCatalogByYear(year);
+    }
 }
