@@ -1,4 +1,4 @@
-package org.example.Labs.H1_H6;
+package org.example.Labs.H6;
 
 import java.util.stream.Stream;
 

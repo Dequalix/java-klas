@@ -3,7 +3,7 @@ package org.example.Labs.H7.Models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import org.example.Labs.H1_H6.Exceptions.PersonDiedException;
+import org.example.Labs.H6.Exceptions.PersonDiedException;
 
 @Data
 @AllArgsConstructor

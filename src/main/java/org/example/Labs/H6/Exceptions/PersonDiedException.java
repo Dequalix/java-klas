@@ -1,4 +1,4 @@
-package org.example.Labs.H1_H6.Exceptions;
+package org.example.Labs.H6.Exceptions;
 
 public class PersonDiedException extends RuntimeException {
     public PersonDiedException(String message) {
