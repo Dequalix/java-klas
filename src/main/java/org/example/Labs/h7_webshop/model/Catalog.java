@@ -10,22 +10,23 @@ import java.util.List;
 public class Catalog {
     private int id;
     private static int nextId;
-    private final LocalDate year;
+    private final LocalDate date;
     private List<Product> items;
 
     public Catalog() {
-        this.id=nextId;
+        this.id = nextId;
         nextId++;
-        this.year = LocalDate.now();
+        this.date = LocalDate.now();
+        items = new ArrayList<>();
     }
 
-    public Catalog(int year, int month, int day) {
-        this.year = LocalDate.of(year, month, day);
+    public Catalog(int date, int month, int day) {
+        this.date = LocalDate.of(date, month, day);
     }
 
-    public Catalog(int year, int month, int day, List<Product> products) {
-        this.year = LocalDate.of(year, month, day);
-        this.items = new ArrayList<>();
+    public Catalog(int date, int month, int day, List<Product> products) {
+        this.date = LocalDate.of(date, month, day);
+        this.items = products;
     }
 
 }

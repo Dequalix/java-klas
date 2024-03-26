@@ -16,13 +16,15 @@ public class Order {
     @Getter
     private int id;
     private static int nextId;
+    @Getter
     private List<Product> items;
     @Getter
     @Setter
     private BigDecimal totalPrice;
+
     public Order() {
         orderDate = LocalDate.now();
-        this.id=nextId;
+        this.id = nextId;
         nextId++;
         items = new ArrayList<>();
         totalPrice = new BigDecimal("0.00");
@@ -34,7 +36,7 @@ public class Order {
         totalPrice = calcTotalPrice();
     }
 
-    public BigDecimal calcTotalPrice(){
+    public BigDecimal calcTotalPrice() {
         return items.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

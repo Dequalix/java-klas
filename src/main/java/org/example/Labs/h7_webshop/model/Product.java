@@ -10,11 +10,13 @@ public class Product {
     private int id;
     private String name;
     private BigDecimal price;
+    private String description;
 
-    public Product(String name, String euroPrice) {
+    public Product(String name, String euroPrice, String description) {
         String numberAsString = euroPrice.replace(",", ".");
         this.name = name;
-        this.id=nextId;
+        this.id = nextId;
+        this.description = description;
         nextId++;
         try {
             this.price = new BigDecimal(numberAsString);

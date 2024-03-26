@@ -6,8 +6,8 @@ import org.example.Labs.h7_webshop.model.Product;
 import java.util.List;
 
 public class ProductRepo {
-    public void createProduct(String productName, String euroPrice) {
-        Product p = new Product(productName, euroPrice);
+    public void createProduct(String productName, String euroPrice, String description) {
+        Product p = new Product(productName, euroPrice, description);
         Database.products.add(p);
     }
 

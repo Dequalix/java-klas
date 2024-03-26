@@ -19,6 +19,9 @@ public class CatalogRepo {
 
 
     public List<Product> finCatalogByYear(int year) {
-        return Database.catalogs.stream().filter(x -> x.getYear().getYear() == year).map();
+        return Database.catalogs.stream()
+                .filter(x -> x.getDate().getYear() == year)
+                .findFirst().orElse(new Catalog())
+                .getItems();
     }
 }

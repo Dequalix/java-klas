@@ -16,15 +16,19 @@ public class OrderController {
 
     public Order createOrder(List<Product> items, String c) {
         Customer customer = customerRepo.findBy(c).stream().findFirst().orElse(null);
-        if(customer == null) {
+        if (customer == null) {
             return null;
         }
         return orderRepo.createOrder(items, customer);
     }
 
+    public Order createOrder(List<Product> items, Customer c) {
+        return orderRepo.createOrder(items, c);
+    }
+
     public void addItemToOrder(Order o, int id) {
         Product product = productRepo.findById(id).stream().findFirst().orElse(null);
-        if(product == null) {
+        if (product == null) {
             return;
         }
         orderRepo.addItemToOrder(o, product);

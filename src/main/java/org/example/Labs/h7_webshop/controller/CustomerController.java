@@ -1,10 +1,16 @@
 package org.example.Labs.h7_webshop.controller;
 
 import org.example.Labs.h7_webshop.model.Customer;
+import org.example.Labs.h7_webshop.model.Order;
 import org.example.Labs.h7_webshop.repository.CustomerRepo;
+
+import java.util.List;
+
+import static org.example.Labs.h7_webshop.Webshop.loggedInAs;
 
 public class CustomerController {
     CustomerRepo customerRepo = new CustomerRepo();
+
     public void createCustomer(String name, String residence, String address, String zipCode, String email) {
         customerRepo.createCustomer(name, residence, address, zipCode, email);
     }
@@ -18,5 +24,10 @@ public class CustomerController {
         c.setName(newName);
         customerRepo.save(c);
     }
+
+    public List<Order> orderList() {
+        return loggedInAs.getOrders();
+    }
+
 
 }
