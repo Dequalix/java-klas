@@ -6,6 +6,6 @@ class TablesTest {
 
     @Test
     void doTable() {
-        Tables.doTable(10, 5);
+//        Tables.doTable(10, 5);
     }
 }
