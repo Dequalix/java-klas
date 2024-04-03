@@ -17,8 +17,22 @@ class AndroidTest {
     }
 
     @Test
-    void charge() {
+    void chargeTo100() {
         a.charge(20);
+        int power = a.getPower();
+        System.out.println(a.greet());
+    }
+    @Test
+    void chargeTo90() {
+        a.charge(10);
+        int power = a.getPower();
+        System.out.println(a.greet());
+    }
+
+    @Test
+    void chargeTooMuch() {
+        a.charge(21);
+        int power = a.getPower();
         System.out.println(a.greet());
     }
 }

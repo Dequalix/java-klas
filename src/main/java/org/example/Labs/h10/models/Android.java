@@ -11,12 +11,12 @@ public class Android extends Human implements ChargeAble {
     }
 
     @Override
-    String greet() {
+    public String greet() {
         return "I'm only half human, but human still.... My energy level is " + power + "%.";
     }
 
     @Override
     public int charge(int amount) {
-        return power + amount <= 100 ? power + amount : power;
+        return power + amount <= 100 ? power = power + amount : power;
     }
 }

@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public abstract class Human {
 
-    abstract String greet();
+    public abstract String greet();
 }
