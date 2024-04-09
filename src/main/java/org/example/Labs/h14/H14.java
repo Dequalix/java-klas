@@ -18,8 +18,8 @@ public class H14 {
 
     public static void main(String[] args) {
 //        h14.hashSetExample();
-        h14.treeSetExample();
-        h14.treeMapExample();
+//        h14.treeSetExample();
+//        h14.treeMapExample();
         h14.iterableExample();
     }
 
@@ -28,6 +28,7 @@ public class H14 {
         p.addHistory(p.getName() + " is geboren");
         p.addHistory(p.getName() + " ging naar school");
         p.addHistory(p.getName() + " is afgestudeerd");
+        p.addHistory(p.getName() + " is dood");
 
         for (Person2.HistoryRecord hr : p) {
             System.out.println(hr.getDescription());
