@@ -15,7 +15,7 @@ class ArraysTest {
 
     @Test
     void fibonacci() {
-        long[] l = Arrays.fibonacci(20);
+        long[] l = Arrays.fibonacci(4);
         stream(l).forEach(System.out::println);
     }
 }
