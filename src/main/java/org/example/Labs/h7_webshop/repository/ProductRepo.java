@@ -1,32 +1,38 @@
 package org.example.Labs.h7_webshop.repository;
 
-import org.example.Labs.h7_webshop.Database;
+import jakarta.persistence.EntityManager;
 import org.example.Labs.h7_webshop.model.Product;
 
 import java.util.List;
 
-public class ProductRepo {
+public class ProductRepo extends Repository {
+
+    public ProductRepo(EntityManager em) {
+        super(em);
+    }
+
     public void createProduct(String productName, String euroPrice, String description) {
         Product p = new Product(productName, euroPrice, description);
-        Database.products.add(p);
+        PerformTransActionConsumer(em::merge, p);
     }
 
     public List<Product> allProducts() {
-        return Database.products;
+        return em.createQuery("select p from Product p", Product.class)
+                .getResultList();
     }
 
     public List<Product> findByName(String name) {
-        return Database.products.stream()
-                .filter(x -> x.getName().contains(name))
-                .toList();
+        return em.createQuery("select p from Product p where p.name = :n", Product.class)
+                .setParameter("n", name)
+                .getResultList();
     }
 
-    public List<Product> findById(int id) {
-        return Database.products.stream().filter(x -> x.getId() == id).toList();
+    public Product findById(int id) {
+        return em.find(Product.class, id);
     }
 
     public void removeProduct(Product p) {
-        Database.products.remove(p);
+        PerformTransActionConsumer(em::remove, p);
     }
 
 }

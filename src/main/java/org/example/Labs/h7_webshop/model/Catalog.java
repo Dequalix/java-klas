@@ -1,5 +1,6 @@
 package org.example.Labs.h7_webshop.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -7,15 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Entity
 public class Catalog {
-    private int id;
-    private static int nextId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private final LocalDate date;
+    @OneToMany(mappedBy = "catalog")
     private List<Product> items;
 
     public Catalog() {
-        this.id = nextId;
-        nextId++;
         this.date = LocalDate.now();
         items = new ArrayList<>();
     }

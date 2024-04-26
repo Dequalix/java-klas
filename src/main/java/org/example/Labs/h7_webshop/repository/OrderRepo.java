@@ -1,35 +1,37 @@
 package org.example.Labs.h7_webshop.repository;
 
-import org.example.Labs.h7_webshop.Database;
+import jakarta.persistence.EntityManager;
 import org.example.Labs.h7_webshop.model.Customer;
 import org.example.Labs.h7_webshop.model.Order;
 import org.example.Labs.h7_webshop.model.Product;
 
 import java.util.List;
 
-public class OrderRepo {
+public class OrderRepo extends Repository {
+
+    public OrderRepo(EntityManager em) {
+        super(em);
+    }
+
     public Order createOrder(Customer c) {
         Order o = new Order();
-        int i = Database.customers.indexOf(c);
         c.addOrderToList(o);
-        Database.orders.add(o);
-        Database.customers.set(i, c);
+        o = (Order) performTransaction(em::merge, o);
+        PerformTransActionConsumer(em::merge, o);
         return o;
     }
 
     public Order createOrder(List<Product> products, Customer c) {
-        Order o = new Order();
-        int i = Database.customers.indexOf(c);
+        Order o = new Order(products);
         c.addOrderToList(o);
-        Database.orders.add(o);
-        Database.customers.set(i, c);
+        o = (Order) performTransaction(em::merge, o);
+        PerformTransActionConsumer(em::merge, o);
         return o;
     }
 
     public void addItemToOrder(Order o, Product p) {
-        int i = Database.orders.indexOf(o);
         o.addProductToOrder(p);
-        Database.orders.set(i, o);
+        PerformTransActionConsumer(em::merge, o);
     }
 
     public String getTotalPrice(Order o) {
@@ -37,8 +39,7 @@ public class OrderRepo {
     }
 
     public void removeItemFromOrder(Order o, Product p) {
-        int i = Database.orders.indexOf(o);
         o.removeProductFromOrder(p);
-        Database.orders.set(i, o);
+        PerformTransActionConsumer(em::merge, o);
     }
 }

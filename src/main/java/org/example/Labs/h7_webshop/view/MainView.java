@@ -1,8 +1,8 @@
 package org.example.Labs.h7_webshop.view;
 
 
-import static org.example.Labs.h7_webshop.Webshop.in;
-import static org.example.Labs.h7_webshop.Webshop.loggedInAs;
+import static org.example.Labs.h7_webshop.Dependencies.in;
+import static org.example.Labs.h7_webshop.Dependencies.loggedInAs;
 
 public class MainView implements View {
     private String input;

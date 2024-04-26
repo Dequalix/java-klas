@@ -1,5 +1,6 @@
 package org.example.Labs.h7_webshop.model;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,24 +9,27 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
+@Table(name = "Orders")
 public class Order {
     @Getter
     @Setter
     private LocalDate orderDate;
     @Getter
-    private int id;
-    private static int nextId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     @Getter
+    @OneToMany(mappedBy = "order")
     private List<Product> items;
     @Getter
     @Setter
     private BigDecimal totalPrice;
+    @ManyToOne
+    private Customer customer;
 
     public Order() {
         orderDate = LocalDate.now();
-        this.id = nextId;
-        nextId++;
         items = new ArrayList<>();
         totalPrice = new BigDecimal("0.00");
     }

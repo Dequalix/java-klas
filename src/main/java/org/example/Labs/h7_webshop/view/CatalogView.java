@@ -5,11 +5,10 @@ import org.example.Labs.h7_webshop.model.Product;
 
 import java.util.List;
 
-import static org.example.Labs.h7_webshop.Webshop.*;
+import static org.example.Labs.h7_webshop.Dependencies.*;
 import static org.example.Labs.h7_webshop.view.MainView.cartView;
 
 public class CatalogView implements View {
-
 
     public void start() {
         while (true) {

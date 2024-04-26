@@ -1,27 +1,33 @@
 package org.example.Labs.h7_webshop.repository;
 
-import org.example.Labs.h7_webshop.Database;
+import jakarta.persistence.EntityManager;
+import lombok.extern.slf4j.Slf4j;
 import org.example.Labs.h7_webshop.model.Catalog;
 import org.example.Labs.h7_webshop.model.Product;
 
 import java.util.List;
 
-public class CatalogRepo {
+@Slf4j
+public class CatalogRepo extends Repository {
+
+    public CatalogRepo(EntityManager em) {
+        super(em);
+    }
+
     public Catalog createCatalog() {
         Catalog c = new Catalog();
-        Database.catalogs.add(c);
-        return c;
+        return (Catalog) performTransaction(em::merge, c);
     }
 
     public List<Catalog> findAllCatalogs() {
-        return Database.catalogs;
+        return em.createQuery("select c from Catalog c", Catalog.class)
+                .getResultList();
     }
 
 
     public List<Product> finCatalogByYear(int year) {
-        return Database.catalogs.stream()
-                .filter(x -> x.getDate().getYear() == year)
-                .findFirst().orElse(new Catalog())
-                .getItems();
+        return em.createQuery("select p from Product p join Catalog c on p.catalog.id = c.id where year(c.date) = :y order by p.id asc ", Product.class)
+                .setParameter("y", year)
+                .getResultList();
     }
 }

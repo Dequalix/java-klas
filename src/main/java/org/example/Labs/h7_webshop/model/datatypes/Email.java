@@ -1,20 +1,26 @@
 package org.example.Labs.h7_webshop.model.datatypes;
 
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 
+@Embeddable
 public class Email {
     @Getter
     private String email;
     private static final String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
-                                             "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+            "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     public Email(String email) {
         setEmail(email);
     }
 
+    public Email() {
+
+    }
+
     public void setEmail(String email) throws IllegalArgumentException {
-        if(!isValidEmail(email)) {
-            throw new IllegalArgumentException("Ongeldig e-mailadress: " +email);
+        if (!isValidEmail(email)) {
+            throw new IllegalArgumentException("Ongeldig e-mailadress: " + email);
         }
         this.email = email;
     }

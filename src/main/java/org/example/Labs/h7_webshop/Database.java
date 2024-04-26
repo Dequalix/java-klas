@@ -1,5 +1,8 @@
 package org.example.Labs.h7_webshop;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import lombok.extern.slf4j.Slf4j;
 import org.example.Labs.h7_webshop.model.Catalog;
 import org.example.Labs.h7_webshop.model.Customer;
 import org.example.Labs.h7_webshop.model.Order;
@@ -11,7 +14,63 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 public class Database {
+
+    public static void addCustomersToDatabase(EntityManager em) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            for (Customer customer : customers) {
+                em.merge(customer);
+            }
+            transaction.commit();
+        } catch (Exception ex) {
+            transaction.rollback();
+            log.error(ex.getMessage(), ex);
+        }
+    }
+
+    public static void addItemsAndCatalog(EntityManager em) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            for (Catalog catalog : catalogs) {
+                em.merge(catalog);
+            }
+            transaction.commit();
+            transaction.begin();
+            for (Product product : productList1) {
+                product.setCatalog(
+                        em.createQuery("select c from Catalog c where year(c.date) =:y", Catalog.class)
+                            .setParameter("y", 2024)
+                            .getSingleResult()
+                );
+                em.merge(product);
+            }
+            for (Product product : productList2) {
+                product.setCatalog(
+                        em.createQuery("select c from Catalog c where year(c.date) =:y", Catalog.class)
+                                .setParameter("y", 2023)
+                                .getSingleResult()
+                );
+                em.merge(product);
+            }
+            for (Product product : productList3) {
+                product.setCatalog(
+                        em.createQuery("select c from Catalog c where year(c.date) =:y", Catalog.class)
+                                .setParameter("y", 2022)
+                                .getSingleResult()
+                );
+                em.merge(product);
+            }
+            transaction.commit();
+        } catch (Exception ex) {
+            transaction.rollback();
+            log.error(ex.getMessage(), ex);
+        }
+    }
+
     public static final List<Customer> customers = Arrays.asList(
             new Customer("Karel", "Apeldoorn", "Karelstraat 10", "7352KS", "karel@karel.nl"),
             new Customer("Peter", "Apeldoorn", "Peterstraat 15", "7332LA", "peter@peter.nl"),

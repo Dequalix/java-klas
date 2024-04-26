@@ -1,11 +1,12 @@
 package org.example.Labs.h7_webshop.view;
 
+import jakarta.persistence.EntityManager;
 import org.example.Labs.h7_webshop.model.Customer;
 
-import static org.example.Labs.h7_webshop.Webshop.*;
+import static org.example.Labs.h7_webshop.Dependencies.*;
 
 public class UserView implements View {
-    public void start() {
+    public void start(EntityManager em) {
 
     }
 
@@ -78,9 +79,9 @@ public class UserView implements View {
     }
 
     public void viewOrders() {
-        if(loggedInAs==null) logIn();
+        if (loggedInAs == null) logIn();
         customerController.orderList().stream().forEach(x -> {
-            System.out.println(x.getId() + ": "  + x.getOrderDate() + " - €" + x.calcTotalPrice());
+            System.out.println(x.getId() + ": " + x.getOrderDate() + " - €" + x.calcTotalPrice());
         });
         String input = in.nextLine();
 
@@ -90,4 +91,8 @@ public class UserView implements View {
 
     }
 
+    @Override
+    public void start() {
+
+    }
 }

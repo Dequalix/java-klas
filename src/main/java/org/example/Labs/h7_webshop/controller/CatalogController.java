@@ -1,5 +1,6 @@
 package org.example.Labs.h7_webshop.controller;
 
+import jakarta.persistence.EntityManager;
 import org.example.Labs.h7_webshop.model.Catalog;
 import org.example.Labs.h7_webshop.model.Product;
 import org.example.Labs.h7_webshop.repository.CatalogRepo;
@@ -8,9 +9,17 @@ import org.example.Labs.h7_webshop.repository.ProductRepo;
 import java.util.List;
 
 public class CatalogController {
-    CatalogRepo catalogRepo = new CatalogRepo();
-    ProductRepo productRepo = new ProductRepo();
-    public Catalog createCatalog(){
+    EntityManager em;
+    CatalogRepo catalogRepo;
+    ProductRepo productRepo;
+
+    public CatalogController(EntityManager em, CatalogRepo catalogRepo, ProductRepo productRepo) {
+        this.em = em;
+        this.catalogRepo = catalogRepo;
+        this.productRepo = productRepo;
+    }
+
+    public Catalog createCatalog() {
         return catalogRepo.createCatalog();
     }
 
@@ -21,7 +30,7 @@ public class CatalogController {
                 // .orElse() please learn english
                 //
                 .orElse(null);
-        if (p == null){
+        if (p == null) {
             return;
         }
         // continue
@@ -31,6 +40,7 @@ public class CatalogController {
     public List<Catalog> findAllCatalogs() {
         return catalogRepo.findAllCatalogs();
     }
+
     public List<Product> findCatalogFromYear(int year) {
         return catalogRepo.finCatalogByYear(year);
     }

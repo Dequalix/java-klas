@@ -4,7 +4,7 @@ import org.example.Labs.h7_webshop.model.Product;
 
 import java.math.BigDecimal;
 
-import static org.example.Labs.h7_webshop.Webshop.*;
+import static org.example.Labs.h7_webshop.Dependencies.*;
 import static org.example.Labs.h7_webshop.view.MainView.userView;
 
 

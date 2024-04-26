@@ -1,15 +1,24 @@
 package org.example.Labs.h7_webshop.controller;
 
+import jakarta.persistence.EntityManager;
 import org.example.Labs.h7_webshop.model.Customer;
 import org.example.Labs.h7_webshop.model.Order;
 import org.example.Labs.h7_webshop.repository.CustomerRepo;
 
 import java.util.List;
 
-import static org.example.Labs.h7_webshop.Webshop.loggedInAs;
+import static org.example.Labs.h7_webshop.Dependencies.loggedInAs;
 
 public class CustomerController {
-    CustomerRepo customerRepo = new CustomerRepo();
+    EntityManager em;
+    CustomerRepo customerRepo;
+
+
+    public CustomerController(EntityManager em, CustomerRepo customerRepo) {
+        this.em = em;
+        this.customerRepo = customerRepo;
+    }
+
 
     public void createCustomer(String name, String residence, String address, String zipCode, String email) {
         customerRepo.createCustomer(name, residence, address, zipCode, email);
