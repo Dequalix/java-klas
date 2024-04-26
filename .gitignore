@@ -37,3 +37,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/logs/app.log
+/logs/2024-04/app-04-25-2024-1.log.gz
