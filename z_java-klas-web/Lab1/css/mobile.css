@@ -1,0 +1,28 @@
+li.trip {
+    width: 80;
+    margin: 0 0 15px 0;
+}
+
+
+h1 {
+    font-weight: bold;
+    font-size: x-large;
+    text-align: left;
+    padding: 10px 10px 10px 0px;
+    text-shadow: 2px 2px black;
+}
+
+#container {
+    margin: 0;
+    padding: 50px 25px;
+    max-width: fit-content;
+}
+
+#container nav li {
+    margin: 1px 1px 10px 1px;
+}
+
+
+form label {
+    padding: 15px 0 5px 5px;
+}

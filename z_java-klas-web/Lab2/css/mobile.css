@@ -1,0 +1,19 @@
+
+
+h1 {
+    font-weight: bold;
+    font-size: x-large;
+    text-align: left;
+    padding: 10px 10px 10px 0px;
+    text-shadow: 2px 2px black;
+}
+
+
+form label {
+    padding: 15px 0 5px 5px;
+}
+
+.trip {
+    width: 80;
+    margin: 0 0 15px 0;
+}

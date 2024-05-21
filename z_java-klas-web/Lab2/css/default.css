@@ -1,0 +1,19 @@
+
+
+form label {
+    float: left;
+    clear: left;
+    text-align: right;
+    width: 140px;
+    padding: 12px;
+}
+
+input, textarea {
+    width: 300px;
+}
+
+.trip {
+    float: left;
+    width: 80;
+    margin: 0 15px 15px 0;
+}
