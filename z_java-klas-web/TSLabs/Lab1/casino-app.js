@@ -27,11 +27,14 @@ class Player extends Person {
 var playerOne = new Player('Han', 46);
 var playerTwo = new Player('Leia', 68);
 
-var highestNumberOfChips = Math.max(Number[playerOne.chips, playerTwo.chips]);
+var highestNumberOfChips = Math.max(playerOne.chips, playerTwo.chips);
 console.log(highestNumberOfChips + ' is the highest number of chips');
 
 class RouletteBoard {
   constructor() {
+      /**
+       * @type {never[]}
+       */
     this.betRecords = [];
   }
 
@@ -44,7 +47,7 @@ class RouletteBoard {
     var record = this.betRecords.find((r) => r.player === player && r.bet === bet);
     if (!record) {
       record = { player: player, bet: bet, numberOfChips: 0 };
-      this.betRecords.add(record);
+      this.betRecords.push(record);
     }
     record.numberOfChips++;
   }

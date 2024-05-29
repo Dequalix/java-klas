@@ -1,6 +1,5 @@
 package org.example.Labs.h7_webshop;
 
-import jakarta.persistence.EntityManager;
 import org.example.Labs.h7_webshop.view.MainView;
 
 import static org.example.Labs.h7_webshop.Database.addCustomersToDatabase;

@@ -17,15 +17,15 @@ public class OrderRepo extends Repository {
         Order o = new Order();
         c.addOrderToList(o);
         o = (Order) performTransaction(em::merge, o);
-        PerformTransActionConsumer(em::merge, o);
+        PerformTransActionConsumer(em::merge, c);
         return o;
     }
 
     public Order createOrder(List<Product> products, Customer c) {
-        Order o = new Order(products);
+        Order o = new Order(products, c);
         c.addOrderToList(o);
         o = (Order) performTransaction(em::merge, o);
-        PerformTransActionConsumer(em::merge, o);
+        PerformTransActionConsumer(em::merge, c);
         return o;
     }
 

@@ -1,21 +1,16 @@
 package org.example.Labs.h7_webshop.model.datatypes;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import lombok.Data;
-import org.example.Labs.h7_webshop.model.Customer;
 
 @Data
-@Entity
+@Embeddable
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
     private String placeOfResidence;
     private String address;
     @Embedded
     private ZipCode zipCode;
-    @OneToOne(mappedBy = "address")
-    private Customer customer;
 
     public Address(String recidence, String address, String zipCode) {
         this.placeOfResidence = recidence;

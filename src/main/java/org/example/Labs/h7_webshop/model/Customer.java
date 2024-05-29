@@ -15,7 +15,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
+    @Embedded
     private Address address;
     @Embedded
     private Email email;

@@ -16,8 +16,6 @@ public class Product {
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private Catalog catalog;
-    @ManyToOne
-    private Order order;
 
     public Product(String name, String euroPrice, String description) {
         String numberAsString = euroPrice.replace(",", ".");

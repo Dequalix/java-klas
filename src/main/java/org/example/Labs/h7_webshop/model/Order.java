@@ -20,24 +20,26 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Getter
-    @OneToMany(mappedBy = "order")
+    @OneToMany
     private List<Product> items;
     @Getter
     @Setter
+    @Transient
     private BigDecimal totalPrice;
     @ManyToOne
-    private Customer customer;
+    private Customer customer = new Customer();
 
     public Order() {
         orderDate = LocalDate.now();
         items = new ArrayList<>();
-        totalPrice = new BigDecimal("0.00");
+        totalPrice = new BigDecimal(String.valueOf(BigDecimal.ZERO));
     }
 
-    public Order(List<Product> p) {
+    public Order(List<Product> p, Customer customer) {
         orderDate = LocalDate.now();
         items = p;
         totalPrice = calcTotalPrice();
+        this.customer = customer;
     }
 
     public BigDecimal calcTotalPrice() {
