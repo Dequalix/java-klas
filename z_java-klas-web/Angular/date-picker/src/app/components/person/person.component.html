@@ -1,0 +1,27 @@
+<div class="container rounded-3 border-black shadow-lg shadow-sm p-5">
+  <h1>{{ person.firstName }} {{ person.lastName }}</h1>
+  <form (ngSubmit)="save(personForm)" #personForm="ngForm" novalidate>
+    @if (this.editMode) {
+      <input type="number" class="form-control w-25 mb-3" aria-label="id" readonly hidden name="id"
+             [(ngModel)]="person.id">
+    }
+    <label class="mb-2">First Name</label>
+    <input type="text" class="form-control w-25 mb-3" placeholder="First name"
+           required aria-label="First name" name="firstName" minlength="2"
+           [(ngModel)]="person.firstName">
+
+    <label class="mb-2">Last Name</label>
+    <input type="text" class="form-control w-25 mb-3" placeholder="Last name"
+           required aria-label="Last name" name="lastName" minlength="2"
+           [(ngModel)]="person.lastName">
+    <label class="mb-2">Age</label>
+    <input type="number" class="form-control w-25 mb-3" placeholder="Age"
+           required aria-label="age" name="age" minlength="1" min=1
+           [(ngModel)]="person.age">
+    <div class="btn-group" role="group" aria-label="Buttons">
+      <button class="btn btn-primary" [disabled]="!personForm.valid">Ok</button>
+      <button (click)="cancel()" class="btn btn-secondary">Cancel</button>
+    </div>
+  </form>
+
+</div>
