@@ -10,7 +10,7 @@ import {serverUrl} from "../../environments/environment";
 export class PersonService {
 
   private baseUrl: String = serverUrl
-  private resource = '/persons';
+  private resource = '/person';
   private personPath = this.baseUrl + this.resource;
   private _personsUpdated$ = new Subject<Person[]>()
 
@@ -27,6 +27,8 @@ export class PersonService {
   }
 
   addPerson(p: Person) {
+    // @ts-ignore
+    delete p.id;
     this.httpClient.post<Person>(this.personPath, p, {observe: 'response'})
       .subscribe(() => this.findAll());
   }

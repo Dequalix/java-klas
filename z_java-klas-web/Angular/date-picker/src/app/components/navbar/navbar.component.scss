@@ -1,18 +1,7 @@
-mat-toolbar {
-  background: #de3c3c;
-}
+@import 'bootstrap';
 
-mat-toolbar mat-toolbar-row button {
-  border-radius: 0;
-  margin: 0;
-  border-right: 1px solid white;
-}
 
-mat-toolbar mat-toolbar-row :last-child {
-  border-right: none;
-}
-
-mat-toolbar-row {
-  display: flex;
-  justify-content: start;
+nav div a.active {
+  color: red;
+  @extend primary !optional;
 }
